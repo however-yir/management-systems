@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>基于深度学习的聊天机器人</title>
+    <link rel="shortcut icon" href="../static/asset/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../static/css/common.css" />
+    <link rel="stylesheet" href="../static/css/index.css" />
+    <link rel="stylesheet" href="http://at.alicdn.com/t/font_3318637_7wow5ux5lho.css">
+  </head>
+  <body>
+    <div class="container">
+      <div class="main">
+        <h1 class="main-title">
+          <img src="../static/asset/robot.png" alt="" />
+          基于深度学习的聊天机器人
+        </h1>
+        <div class="chat-container">
+           <div class="chat-item me">
+            <img class="chat-avatar" src="../static/asset/avatar.png" />
+            <div class="chat-content">你几岁啦？</div>
+            <div class="chat-date">2022-04-29 14:18:13</div>
+          </div>
+          <div class="chat-item">
+            <img class="chat-avatar" src="../static/asset/robot-avatar.jpg" />
+            <div class="chat-content">讨厌，不要随便问女生年龄知道不</div>
+            <div class="chat-date">2022-04-29 14:18:16</div>
+          </div>
+        </div>
+        <form class="msg-container">
+          <input
+            type="text"
+            id="txtMsg"
+            placeholder="在这里输入要发送的消息，按回车键即可发送"
+          />
+          <button>发送</button>
+        </form>
+      </div>
+      <div class="aside">
+        <img src="../static/asset/avatar.png" class="aside-avatar" alt="" />
+        <p id="nickname" class="aside-name"></p>
+        <p id="loginId" class="aside-account"></p>
+
+      </div>
+        <div style="position: absolute;bottom: 10px;right: 10px;">
+             <a href="/admin">进入后台管理</a>
+        </div>
+      <div class="close">
+        <i class="iconfont icon-dituweizhixinxi_chahao"></i>
+      </div>
+
+    </div>
+
+    <script src="../static/js/common.js"></script>
+    <script src="../static/js/api.js"></script>
+    <script src="../static/js/index.js"></script>
+  </body>
+</html>

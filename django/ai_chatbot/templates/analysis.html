@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+{% block style %}
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .main {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+        }
+
+        .quarter-div {
+            width: 50%;
+            height: 50%;
+            float: left;
+        }
+
+    </style>
+    <script src="../static/js/echarts.js"></script>
+{% endblock %}
+{% block content %}
+    <div class="content">
+        <div class="page-inner">
+            <div class="mt-2 mb-4">
+                <h2 class="text-white pb-2">图片分析</h2>
+                <h5 class="text-white op-7 mb-4"></h5>
+            </div>
+            <div class="row">
+                <div class="main">
+                    <div class="quarter-div blue" id="main1"></div>
+                    <div class="quarter-div yellow" id="main3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block script %}
+    <script>
+        $(function () {
+            var bodyH = $(window).height();
+            console.log(bodyH);
+            var h = bodyH / 2 - 70;
+            $(".quarter-div .panel-body").height(h);
+        });
+        var chartDom = document.getElementById('main1');
+        var myChart = echarts.init(chartDom);
+        var month =
+        {{ country | safe }}
+        var counts =
+        {{ count | safe }}
+        var option;
+        option = {
+            title: {
+                text: '室内烟雾识别柱状图分析'
+            },
+            tooltip: {
+                show: true
+            },
+            legend: {
+                data: ['数量']
+            },
+            xAxis: {
+                name: '是否有烟',
+                type: 'category',
+                data: month,
+                axisLabel: {
+                    interval: 0,
+                    rotate: 40,
+                }
+            },
+
+
+            yAxis: {
+                name: '数量',
+                type: 'value'
+            },
+            series: [
+                {
+                    name: '烟雾状况',
+                    data: counts,
+                    type: 'bar',
+                    showBackground: true,
+                    backgroundStyle: {
+                        color: 'rgba(180, 180, 180, 0.2)'
+                    },
+                    itemStyle: {
+                        normal: {
+                            label: {
+                                show: true,  //开启显示
+                                position: 'top',  //在上方显示
+                                textStyle: {  //数值样式
+                                    color: 'black',
+                                    fontSize: 16
+                                }
+                            }
+                        }
+                    },
+                }
+            ]
+        };
+
+        option && myChart.setOption(option);
+
+    </script>
+
+    <script>
+
+        var app = {};
+        var chartDom3 = document.getElementById('main3');
+        var myChart3 = echarts.init(chartDom3);
+        var option3;
+
+        option3 = {
+            title: {
+                text: '操作用户占比饼图',
+                subtext: '',
+                left: 'center'
+            },
+            tooltip: {
+                trigger: 'item'
+            },
+            legend: {
+                orient: 'vertical',
+                left: 'left'
+            },
+            series: [
+                {
+                    name: '数量',
+                    type: 'pie',
+                    radius: '50%',
+                    data: {{ values | safe }},
+                    emphasis: {
+                        itemStyle: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+
+        option3 && myChart3.setOption(option3);
+    </script>
+
+{% endblock %}
+
+

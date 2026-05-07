@@ -1,0 +1,19 @@
+运行步骤
+
+需要先安装Python的相关依赖：pymysql，Django ，requests ，opencv-python=4.5.5.64，pickle，tensorflow==1.14.0,keras,numpy使用pip install 安装
+
+第一步：创建数据库，数据库名：ai_chatbot
+
+第二步：执行SQL语句，打开ai_chatbot.sql文件，运行该文件中的SQL语句
+
+第三步：源码文件为ai_chatbot.zip，修改源代码中的settings.py文件，改成自己的mysql数据库用户名和密码
+
+第四步：运行命令：python manage.py runserver 8000
+
+第五步：打开浏览器查看http://127.0.0.1:8000
+
+测试账户
+
+账户1： 用户名：admin 密码：123
+
+

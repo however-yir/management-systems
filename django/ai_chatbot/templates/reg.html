@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>基于深度学习的聊天机器人-用户注册</title>
+    <link rel="shortcut icon" href="../static/asset/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../static/css/common.css" />
+    <link rel="stylesheet" href="../static/css/user.css" />
+    <link rel="stylesheet" href="http://at.alicdn.com/t/font_3318637_51r99a6v8sp.css">
+  </head>
+  <body>
+    <form class="user-form">
+      <h1 class="title">
+        <img src="../static/asset/robot.png" alt="" />
+        聊天机器人
+      </h1>
+      <div class="form-group">
+        <i class="iconfont icon-zhanghao"></i>
+        <input
+          id="txtLoginId"
+          name="loginId"
+          type="text"
+          max="20"
+          placeholder="请输入账号"
+          class="txt"
+        />
+        <p class="err"></p>
+      </div>
+      <div class="form-group">
+        <i class="iconfont icon-zhanghao"></i>
+        <input
+          id="txtNickname"
+          name="nickname"
+          type="text"
+          max="20"
+          placeholder="请输入昵称"
+          class="txt"
+        />
+        <p class="err"></p>
+      </div>
+      <div class="form-group">
+        <i class="iconfont icon-mima"></i>
+        <input
+          id="txtLoginPwd"
+          name="loginPwd"
+          type="password"
+          max="20"
+          placeholder="请输入密码"
+          class="txt"
+        />
+        <p class="err"></p>
+      </div>
+      <div class="form-group">
+        <i class="iconfont icon-mima"></i>
+        <input
+          type="password"
+          id="txtLoginPwdConfirm"
+          max="20"
+          placeholder="请再输入一次密码"
+          class="txt"
+        />
+        <p class="err"></p>
+      </div>
+      <div class="form-group">
+        <button class="submit">注册</button>
+      </div>
+      <div class="form-group">
+        <p class="msg">
+          已有账号？
+          <a href="/">点击这里登录</a>
+        </p>
+      </div>
+    </form>
+    <script src="../static/js/jquery.min.js"></script>
+    <script src="../static/js/common.js"></script>
+    <script src="../static/js/api.js"></script>
+    <script src="../static/js/user.js"></script>
+    <script src="../static/js/reg.js"></script>
+  </body>
+</html>
+<script>
+    function regiser(){
+   $.ajax({
+     type: 'POST',
+     url: "/user/register",
+     dataType: 'json', //服务端返回json格式的数据
+     data: {'username':$('#txtLoginPwd').val(), 'password':$('#txtLoginPwd').val(), 'nickname': $('#txtNickname').val()},
+     success: function (data) { // 这里的data就是返回的json格式的数据
+       console.log(11)
+     },
+     error: function (xhr, type) {
+       if (xhr.status == 401) {
+         alert('用户名或密码不正确！')
+       } else if (xhr.status == 403) {
+         layer.msg('用户已存在！2s后自动跳转到登录页面', {icon: 7})
+         setTimeout(function () {
+           window.location.href = '/'
+         }, 2000)
+
+       }
+     }
+   })
+        }
+</script>
