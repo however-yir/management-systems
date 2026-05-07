@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mall-product
+  labels:
+    app: mall-product
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mall-product
+  template:
+    metadata:
+      labels:
+        app: mall-product
+    spec:
+      containers:
+        - name: mall-product
+          image: ghcr.io/your-org/cloud-native-mall/mall-product:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8082
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: k8s
+            - name: SECURITY_JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: mall-jwt-secret
+                  key: jwt-secret
+            - name: SECURITY_JWT_BASE64
+              value: "false"
+            - name: SPRING_REDIS_HOST
+              value: redis.default.svc.cluster.local
+            - name: SPRING_ELASTICSEARCH_URIS
+              value: http://elasticsearch.default.svc.cluster.local:9200

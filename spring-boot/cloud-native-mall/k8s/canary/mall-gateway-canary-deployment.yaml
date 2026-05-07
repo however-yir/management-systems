@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mall-gateway-canary
+  labels:
+    app: mall-gateway
+    version: canary
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mall-gateway
+      version: canary
+  template:
+    metadata:
+      labels:
+        app: mall-gateway
+        version: canary
+    spec:
+      containers:
+        - name: mall-gateway
+          image: ghcr.io/your-org/cloud-native-mall/mall-gateway:canary
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: k8s
+            - name: SECURITY_JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: mall-jwt-secret
+                  key: jwt-secret
+            - name: SECURITY_JWT_BASE64
+              value: "false"
+            - name: EUREKA_ENABLED
+              value: "false"
+            - name: CONFIG_SERVER_URL
+              value: http://config-server.default.svc.cluster.local:8888
+          readinessProbe:
+            httpGet:
+              path: /actuator/health/readiness
+              port: 8080
+            initialDelaySeconds: 15
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /actuator/health/liveness
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 15

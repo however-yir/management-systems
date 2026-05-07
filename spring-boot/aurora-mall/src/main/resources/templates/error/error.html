@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Aurora Mall Error</title>
+    <style type="text/css">html{font-family:sans-serif;line-height:1.15}body{margin:0;background:#0f172a;color:#fff;display:table;width:100%;height:100%;font-family:"Open Sans",Arial,sans-serif}.cover{display:table-cell;vertical-align:middle;padding:40px}h1{font-size:36px;margin:0 0 12px}a{color:#5eead4;text-decoration:none}.lead{color:#cbd5e1}</style>
+</head>
+<body>
+<div class="cover">
+    <h1>请求处理失败</h1>
+    <p class="lead">Aurora Mall 已捕获到本次异常，请检查下方信息。</p>
+    <p th:text="'错误信息：' + ${message}" style="color:#fca5a5;font-weight:600;"></p>
+    <p th:text="'请求地址：' + ${url}"></p>
+    <h2>反馈渠道</h2>
+    <a href="https://github.com/however-yir/aurora-mall/issues/new" target="_blank">提交 Issue</a>
+    <h2>异常堆栈</h2>
+    <div th:each="string:${stackTrace}">
+        <small><th:block th:text="${string}"></th:block></small>
+    </div>
+    <h2>上下文</h2>
+    <p th:text="'author：' + ${author}" style="color:#5eead4;"></p>
+    <p th:text="'ltd：' + ${ltd}" style="color:#5eead4;"></p>
+</div>
+</body>
+</html>

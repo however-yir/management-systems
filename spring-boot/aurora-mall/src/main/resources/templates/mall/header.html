@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head-fragment(title,path)">
+    <meta charset="UTF-8">
+    <title>极光商城 Aurora Mall</title>
+    <link rel="icon" type="image/svg+xml" th:href="@{/aurora-favicon.svg}"/>
+    <link rel="stylesheet" th:href="@{/mall/css/swiper-bundle.min.css}">
+    <link rel="stylesheet" th:href="@{/mall/css/iconfont.css}">
+    <link rel="stylesheet" th:href="@{/mall/css/common.css}">
+    <link rel="stylesheet" th:href="@{/mall/styles/header.css}">
+    <link rel="stylesheet" th:href="@{'/mall/styles/'+${path}+'.css'}">
+    <link rel="stylesheet" th:href="@{/admin/plugins/sweetalert2/sweetalert2.min.css}"/>
+    <meta name="keywords" content="极光商城, Aurora Mall, Java 商城, Spring Boot 电商, 后台运营系统"/>
+    <meta name="description" content="Aurora Mall 是一个可继续二开的 Spring Boot 商城基座，包含前台购物流程与后台运营管理。"/>
+</head>
+<nav id="nav" th:fragment="nav-fragment">
+    <div class="banner_x center">
+        <a th:href="@{/index}" class="logo"><h1>极光商城</h1></a>
+        <div class="fr">
+            <div class="search">
+                <input class="text" type="text" id="keyword" autocomplete="off">
+                <div class="search_hot"></div>
+            </div>
+            <div class="button iconfont icon-search" onclick="search()"></div>
+        </div>
+    </div>
+</nav>
+<header id="header" th:fragment="header-fragment">
+    <div class="center">
+        <ul class="fl">
+            <li><a th:href="@{/index}">极光商城</a></li>
+            <li><a th:href="@{/admin}">运营后台</a></li>
+            <li><a href="https://github.com/however-yir/aurora-mall" target="_blank">源码仓库</a></li>
+            <li><a href="mailto:opensource@aurora-mall.dev">联系维护者</a></li>
+        </ul>
+        <div class="fr">
+            <th:block th:unless="${session.auroraMallUser==null}">
+                <div class="user">
+                    <ul class="selector">
+                        <li><a th:href="@{/personal}">个人中心</a></li>
+                        <li><a th:href="@{/orders}">我的订单</a></li>
+                        <li><a th:href="@{/logout}">退出登录</a></li>
+                    </ul>
+                    <a href="##" class="username">
+                        <th:block th:text="${session.auroraMallUser.nickName}"></th:block>
+                        <i class="iconfont icon-down"></i>
+                    </a>
+                </div>
+                <div class="shopcart">
+                    <a th:href="@{/shop-cart}" style="color: white;"><i class="iconfont icon-cart"></i>
+                        购物车(
+                        <th:block th:text="${session.auroraMallUser.shopCartItemCount}"></th:block>
+                        )</a>
+                </div>
+            </th:block>
+            <th:block th:if="${session.auroraMallUser==null}">
+                <ul class="login">
+                    <li><a th:href="@{/login}">登录</a></li>
+                    <li><a th:href="@{/register}">注册</a></li>
+                </ul>
+                <div class="shopcart">
+                    <a href="##" style="color: white;"><i class="iconfont icon-cart"></i>购物车(0)</a>
+                </div>
+            </th:block>
+        </div>
+    </div>
+</header>
+</html>

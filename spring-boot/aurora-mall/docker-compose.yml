@@ -1,0 +1,36 @@
+version: "3.9"
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: aurora-mall-mysql
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-aurora_mall_db}
+      MYSQL_USER: ${MYSQL_USER:-aurora_app}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-change_me_db_password}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-change_me_root_password}
+    ports:
+      - "${MYSQL_PORT:-3306}:3306"
+    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - aurora-mysql:/var/lib/mysql
+
+  app:
+    build: .
+    container_name: aurora-mall-app
+    depends_on:
+      - mysql
+    environment:
+      APP_PROFILE: ${APP_PROFILE:-local}
+      APP_PORT: ${APP_PORT:-28089}
+      APP_DB_URL: jdbc:mysql://mysql:3306/${MYSQL_DATABASE:-aurora_mall_db}?useUnicode=true&serverTimezone=Asia/Shanghai&characterEncoding=utf8&autoReconnect=true&useSSL=false&allowMultiQueries=true
+      APP_DB_USERNAME: ${MYSQL_USER:-aurora_app}
+      APP_DB_PASSWORD: ${MYSQL_PASSWORD:-change_me_db_password}
+      APP_UPLOAD_DIR: ${APP_UPLOAD_DIR:-/data/uploads/}
+    ports:
+      - "${APP_PORT:-28089}:${APP_PORT:-28089}"
+    volumes:
+      - aurora-uploads:${APP_UPLOAD_DIR:-/data/uploads/}
+
+volumes:
+  aurora-mysql:
+  aurora-uploads:

@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mall-gateway
+  labels:
+    app: mall-gateway
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mall-gateway
+  template:
+    metadata:
+      labels:
+        app: mall-gateway
+    spec:
+      containers:
+        - name: mall-gateway
+          image: ghcr.io/your-org/cloud-native-mall/mall-gateway:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: k8s
+            - name: SECURITY_JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: mall-jwt-secret
+                  key: jwt-secret
+            - name: SECURITY_JWT_BASE64
+              value: "false"
+            - name: SPRING_REDIS_HOST
+              value: redis.default.svc.cluster.local
+            - name: USER_SERVICE_URI
+              value: http://mall-user.default.svc.cluster.local:8081
+            - name: PRODUCT_SERVICE_URI
+              value: http://mall-product.default.svc.cluster.local:8082
+            - name: ORDER_SERVICE_URI
+              value: http://mall-order.default.svc.cluster.local:8083
+            - name: PAYMENT_SERVICE_URI
+              value: http://mall-payment.default.svc.cluster.local:8084
+          readinessProbe:
+            httpGet:
+              path: /actuator/health/readiness
+              port: 8080
+            initialDelaySeconds: 15
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /actuator/health/liveness
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 15

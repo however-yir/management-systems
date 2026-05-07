@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mall-order
+  labels:
+    app: mall-order
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mall-order
+  template:
+    metadata:
+      labels:
+        app: mall-order
+    spec:
+      containers:
+        - name: mall-order
+          image: ghcr.io/your-org/cloud-native-mall/mall-order:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8083
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: k8s
+            - name: SECURITY_JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: mall-jwt-secret
+                  key: jwt-secret
+            - name: SECURITY_JWT_BASE64
+              value: "false"
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:mysql://mysql.default.svc.cluster.local:3306/mall_order?useSSL=false&allowPublicKeyRetrieval=true
+            - name: SPRING_REDIS_HOST
+              value: redis.default.svc.cluster.local

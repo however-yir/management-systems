@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<header th:replace="admin/header::header-fragment"></header>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+    <div th:replace="admin/header::header-nav"></div>
+    <div th:replace="admin/sidebar::sidebar-fragment(${path})"></div>
+    <div class="content-wrapper">
+        <div class="content-header">
+            <div class="container-fluid"></div>
+        </div>
+        <div class="content">
+            <div class="card card-primary card-outline">
+                <div class="card-header">
+                    <h3 class="card-title">Aurora Mall 概览</h3>
+                </div>
+                <div class="card-body">
+                    <div class="panel panel-default">
+                        <div style="padding: 10px 0 20px 10px;">
+                            <img th:src="@{/admin/dist/img/aurora-mark.svg}" style="width: 160px; height: 160px;" alt="Aurora Mall logo">
+                            <p style="margin-top: 16px; max-width: 860px;">
+                                Aurora Mall 是一个面向二次开发的单体电商基座，覆盖商城首页、商品分类、搜索、购物车、订单流转和后台运营管理。
+                                当前版本已经完成第一轮品牌迁移与配置外置，适合作为个人作品集、课程重构项目或业务原型继续演进。
+                            </p>
+                            <ul>
+                                <li>统一了 Maven 坐标和 Java 包命名空间</li>
+                                <li>数据库与上传目录已经支持环境变量配置</li>
+                                <li>补充了 Dockerfile、Compose 和示例环境变量</li>
+                                <li>文档、模板标题和后台品牌入口已切换为 Aurora Mall</li>
+                            </ul>
+                            <h3>仓库信息</h3>
+                            <ul>
+                                <li>GitHub: <a href="https://github.com/however-yir/aurora-mall" target="_blank">however-yir/aurora-mall</a></li>
+                                <li>联系邮箱: opensource@aurora-mall.dev</li>
+                                <li>本地默认端口: 28089</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:replace="admin/footer::footer-fragment"></div>
+</div>
+<script th:src="@{/admin/plugins/jquery/jquery.min.js}"></script>
+<script th:src="@{/admin/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/admin/dist/js/adminlte.min.js}"></script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+server:
+  port: 8080
+
+spring:
+  config:
+    import: optional:configserver:${CONFIG_SERVER_URL:http://localhost:8888}
+  application:
+    name: mall-gateway
+  main:
+    web-application-type: reactive
+  data:
+    redis:
+      host: ${SPRING_REDIS_HOST:localhost}
+      port: ${SPRING_REDIS_PORT:6379}
+  cloud:
+    config:
+      enabled: ${SPRING_CLOUD_CONFIG_ENABLED:false}
+    gateway:
+      default-filters:
+        - name: RequestRateLimiter
+          args:
+            redis-rate-limiter.replenishRate: ${GATEWAY_RATE_LIMIT_REPLENISH:20}
+            redis-rate-limiter.burstCapacity: ${GATEWAY_RATE_LIMIT_BURST:40}
+            key-resolver: "#{@userOrIpKeyResolver}"
+      routes:
+        - id: user-service
+          uri: ${USER_SERVICE_URI:lb://mall-user}
+          predicates:
+            - Path=/api/users/**
+        - id: product-service
+          uri: ${PRODUCT_SERVICE_URI:lb://mall-product}
+          predicates:
+            - Path=/api/products/**
+        - id: order-service
+          uri: ${ORDER_SERVICE_URI:lb://mall-order}
+          predicates:
+            - Path=/api/orders/**
+        - id: payment-service
+          uri: ${PAYMENT_SERVICE_URI:lb://mall-payment}
+          predicates:
+            - Path=/api/payments/**
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+  endpoint:
+    health:
+      show-details: always
+      probes:
+        enabled: true
+  tracing:
+    sampling:
+      probability: ${TRACING_SAMPLING_PROBABILITY:1.0}
+  otlp:
+    tracing:
+      endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT:http://localhost:4318/v1/traces}
+  health:
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true
+
+security:
+  jwt:
+    issuer: ${SECURITY_JWT_ISSUER:cloud-native-mall}
+    # Must be provided via env, at least 32 bytes.
+    secret: ${SECURITY_JWT_SECRET:}
+    base64-secret: ${SECURITY_JWT_BASE64:false}
+    access-token-expire-seconds: ${SECURITY_JWT_EXPIRE_SECONDS:7200}
+    header: ${SECURITY_JWT_HEADER:Authorization}
+    prefix: "Bearer "
+
+gateway:
+  auth:
+    whitelist:
+      - /api/users/login
+      - /api/gateway/status
+      - /v3/api-docs/**
+      - /swagger-ui/**
+      - /actuator/**
+  access-control:
+    tenant-header: ${GATEWAY_TENANT_HEADER:X-Tenant-Id}
+    tenant-whitelist:
+      - public
+      - demo
+    tenant-blacklist:
+      - blocked-tenant
+    ip-blacklist:
+      - 127.0.0.2
+
+eureka:
+  client:
+    enabled: ${EUREKA_ENABLED:false}
+    service-url:
+      defaultZone: ${EUREKA_SERVER_URL:http://localhost:8761/eureka}
+    fetch-registry: true
+    register-with-eureka: true
+  instance:
+    prefer-ip-address: true
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+
+logging:
+  pattern:
+    level: "%5p [${spring.application.name:}] [trace:%X{X-Trace-Id:-}]"

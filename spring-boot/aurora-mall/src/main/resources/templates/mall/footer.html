@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div class="site-footer" th:fragment="footer-fragment">
+    <div class="footer-related">
+        <div class="footer-article w1100">
+            <dl class="contact clearfix">
+                <dt class="fl"><i class="iconfont"></i></dt>
+                <dd class="fl">
+                    <p class="text">运营支持</p>
+                    <p class="tel">Aurora Mall Demo</p>
+                    <a href="mailto:opensource@aurora-mall.dev">发送邮件</a>
+                </dd>
+            </dl>
+            <dl class="col-article">
+                <dt>快速入口</dt>
+                <dd><a rel="nofollow" th:href="@{/index}">商城首页</a></dd>
+                <dd><a rel="nofollow" th:href="@{/login}">会员登录</a></dd>
+                <dd><a rel="nofollow" th:href="@{/admin}">运营后台</a></dd>
+            </dl>
+            <dl class="col-article">
+                <dt>部署相关</dt>
+                <dd><a rel="nofollow" href="https://github.com/however-yir/aurora-mall" target="_blank">仓库主页</a></dd>
+                <dd><a rel="nofollow" href="https://github.com/however-yir/aurora-mall/issues" target="_blank">问题反馈</a></dd>
+                <dd><a rel="nofollow" href="mailto:opensource@aurora-mall.dev">联系维护者</a></dd>
+            </dl>
+            <dl class="col-article">
+                <dt>后续演进</dt>
+                <dd><a rel="nofollow" href="javascript:void(0)">运营看板</a></dd>
+                <dd><a rel="nofollow" href="javascript:void(0)">促销引擎</a></dd>
+                <dd><a rel="nofollow" href="javascript:void(0)">会员成长体系</a></dd>
+            </dl>
+            <dl class="wx">
+                <dt>Aurora Mall</dt>
+                <dd><img th:src="@{/mall/image/aurora-mark.svg}" alt="Aurora Mall"></dd>
+                <dd class="other">
+                    <span>环境：</span>
+                    <a href="javascript:void(0)">Dev</a>
+                    <a href="javascript:void(0)">Test</a>
+                    <a href="javascript:void(0)">Prod</a>
+                </dd>
+            </dl>
+        </div>
+        <div class="footer-links w1100">
+            <p>导航：</p>
+            <div class="clearfix">
+                <a th:href="@{/index}">商城首页</a>
+                <a th:href="@{/admin}">后台管理</a>
+                <a href="https://github.com/however-yir/aurora-mall" target="_blank">GitHub</a>
+                <a href="https://github.com/however-yir/aurora-mall/issues" target="_blank">Issues</a>
+                <a href="mailto:opensource@aurora-mall.dev">Email</a>
+            </div>
+        </div>
+        <div class="footer-info w1100">
+            <div class="info-text w1100">
+                <p>Aurora Mall · Independent commerce fork maintained by Aurora Labs.</p>
+                <p>Visible branding and configuration have been migrated. Deeper architecture refactors are in progress.</p>
+            </div>
+        </div>
+    </div>
+</div>
+</html>

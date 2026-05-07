@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: mall-gateway-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: mall.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: mall-gateway
+                port:
+                  number: 80

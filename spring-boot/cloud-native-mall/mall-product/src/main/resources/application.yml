@@ -1,0 +1,67 @@
+server:
+  port: 8082
+
+spring:
+  config:
+    import: optional:configserver:${CONFIG_SERVER_URL:http://localhost:8888}
+  application:
+    name: mall-product
+  cloud:
+    config:
+      enabled: ${SPRING_CLOUD_CONFIG_ENABLED:false}
+  data:
+    redis:
+      host: ${SPRING_REDIS_HOST:localhost}
+      port: ${SPRING_REDIS_PORT:6379}
+  elasticsearch:
+    uris: ${SPRING_ELASTICSEARCH_URIS:http://localhost:9200}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+  endpoint:
+    health:
+      probes:
+        enabled: true
+  health:
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true
+  tracing:
+    sampling:
+      probability: ${TRACING_SAMPLING_PROBABILITY:1.0}
+  otlp:
+    tracing:
+      endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT:http://localhost:4318/v1/traces}
+
+security:
+  jwt:
+    issuer: ${SECURITY_JWT_ISSUER:cloud-native-mall}
+    secret: ${SECURITY_JWT_SECRET:change-this-to-a-very-long-secret-key-for-jwt-demo-2026}
+    base64-secret: ${SECURITY_JWT_BASE64:false}
+    access-token-expire-seconds: ${SECURITY_JWT_EXPIRE_SECONDS:7200}
+    header: ${SECURITY_JWT_HEADER:Authorization}
+    prefix: "Bearer "
+
+eureka:
+  client:
+    enabled: ${EUREKA_ENABLED:false}
+    service-url:
+      defaultZone: ${EUREKA_SERVER_URL:http://localhost:8761/eureka}
+    fetch-registry: true
+    register-with-eureka: true
+  instance:
+    prefer-ip-address: true
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+
+logging:
+  pattern:
+    level: "%5p [${spring.application.name:}] [trace:%X{X-Trace-Id:-}]"
