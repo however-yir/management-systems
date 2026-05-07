@@ -1,0 +1,41 @@
+server:
+  port: ${SERVER_PORT:8080}
+  tomcat:
+    uri-encoding: UTF-8
+
+spring:
+  config:
+    import: optional:file:.env[.properties]
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/djxt?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&createDatabaseIfNotExist=true}
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:123456}
+    driver-class-name: ${DB_DRIVER:com.mysql.cj.jdbc.Driver}
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+    validate-on-migrate: false
+  cache:
+    type: ${CACHE_TYPE:simple}
+    redis:
+      time-to-live: ${CACHE_TTL_MS:300000}
+      cache-null-values: false
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD:}
+      database: ${REDIS_DB:0}
+      timeout: 2s
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+  global-config:
+    db-config:
+      id-type: auto
+
+jwt:
+  secret: ${JWT_SECRET:ReplaceWithAtLeast32CharsSecretKeyForPartyHub}
+  expiration-seconds: ${JWT_EXPIRATION_SECONDS:7200}

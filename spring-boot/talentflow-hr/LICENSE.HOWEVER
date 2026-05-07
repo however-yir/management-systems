@@ -1,0 +1,13 @@
+TalentFlow HR Fork-Specific Licensing Notes
+==========================================
+
+This repository is a derivative work of:
+  https://github.com/lenve/vhr
+
+Fork-specific notes:
+  - This fork does not claim to relicense upstream-derived application code.
+  - The scoped repository license notice in LICENSE applies only to clearly fork-authored documentation, metadata, and showcase materials.
+  - Redistribution should preserve the notices in LICENSE, LICENSE_STATUS.md, and NOTICE.md.
+
+Maintainer:
+  however-yir / Liu Zhuoran

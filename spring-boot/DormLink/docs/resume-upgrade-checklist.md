@@ -1,0 +1,34 @@
+# DormLink Resume Upgrade Checklist
+
+## 1. 功能
+- [x] 调宿申请重复提交幂等保护（同人同源/目标房间的未处理申请阻断）
+- [x] 调宿申请默认状态与申请时间补全
+- [ ] 入住申请 -> 审批 -> 分配宿舍闭环
+- [ ] 调宿驳回重提机制
+- [ ] 报修处理完成后的学生评价反馈
+
+## 2. 工程化
+- [x] 新增 `.env.example`
+- [x] 新增 `docker-compose.dev.yml`（MySQL + Redis）
+- [x] 新增 CI（GitHub Actions）
+- [x] 补齐 `db/init.sql`（建表 + 种子数据）
+- [x] 增加离线 KPI 评估脚本（`scripts/evaluation/repair_metrics.py`）
+- [x] JWT 鉴权改造（`JwtUtil` + `JwtAuthenticationFilter` + `WebConfig`）
+- [ ] 审计日志
+- [ ] 导出报表能力
+
+## 3. README
+- [x] 增加改造清单入口
+- [ ] 补角色权限图
+- [x] 补入住/调宿/报修流程图
+- [ ] 补宿舍资源模型说明
+- [ ] 补前后端联调步骤
+
+## 4. 测试
+- [x] 调宿重复申请测试
+- [x] 调宿申请默认字段测试
+- [x] 调宿申请手动状态/时间保留测试
+- [ ] 调宿一致性测试
+- [x] 报修状态流转测试
+- [x] Controller 层接口测试（`@WebMvcTest`）
+- [x] JWT 工具类单元测试

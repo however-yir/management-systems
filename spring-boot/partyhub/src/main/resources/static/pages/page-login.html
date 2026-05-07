@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>PartyHub 登录</title>
+    <link rel="stylesheet" href="../css/partyhub-modern.css">
+</head>
+<body>
+<section class="hero" style="min-height:100vh;">
+    <header class="topbar">
+        <div class="brand">
+            <img src="../newpic/logo-white.png" alt="PartyHub Logo">
+            <div>
+                <h1 class="brand-title">PartyHub 党建评星协同平台</h1>
+                <p class="brand-sub">登录后可访问统计看板与评星流程数据</p>
+            </div>
+        </div>
+        <div class="topbar-actions">
+            <a class="ghost-btn" href="../index.html">返回首页</a>
+        </div>
+    </header>
+
+    <div class="hero-inner" style="grid-template-columns:minmax(280px,1fr) minmax(280px,430px);">
+        <div class="hero-copy">
+            <p class="hero-kicker">Account Access</p>
+            <h2 class="hero-title">统一身份登录</h2>
+            <p class="hero-desc">
+                默认演示账号已经内置在系统中，你可以先登录查看完整数据流，再按业务需要切换真实账号。
+            </p>
+            <div class="hero-cta">
+                <button id="fill-demo" class="secondary-btn" type="button">填入演示账号</button>
+                <a class="primary-btn" href="../index.html">查看实时看板</a>
+            </div>
+        </div>
+
+        <div class="hero-login">
+            <div class="login-panel">
+                <h3 class="login-title">登录 PartyHub</h3>
+                <p class="login-sub">演示账号：admin / 123456</p>
+
+                <form id="login-form" class="login-grid">
+                    <div class="field">
+                        <label for="username">用户名</label>
+                        <input id="username" type="text" autocomplete="username" placeholder="请输入用户名">
+                    </div>
+                    <div class="field">
+                        <label for="password">密码</label>
+                        <input id="password" type="password" autocomplete="current-password" placeholder="请输入密码">
+                    </div>
+
+                    <div class="login-actions">
+                        <button class="primary-btn" type="submit">登录</button>
+                    </div>
+
+                    <p id="status" class="login-status"></p>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+  (function () {
+    const statusEl = document.getElementById('status');
+    const form = document.getElementById('login-form');
+    const usernameInput = document.getElementById('username');
+    const passwordInput = document.getElementById('password');
+
+    function setStatus(text, type) {
+      statusEl.className = 'login-status' + (type ? (' ' + type) : '');
+      statusEl.textContent = text || '';
+    }
+
+    function saveSession(data, fallbackUser) {
+      localStorage.setItem('partyhub_token', data.token);
+      localStorage.setItem('partyhub_username', data.username || fallbackUser);
+      localStorage.setItem('loginInfo', JSON.stringify({
+        userName: data.username || fallbackUser,
+        nickName: data.username || fallbackUser,
+        token: data.token
+      }));
+    }
+
+    async function login(event) {
+      event.preventDefault();
+      const username = (usernameInput.value || '').trim();
+      const password = (passwordInput.value || '').trim();
+
+      if (!username || !password) {
+        setStatus('请输入用户名和密码。', 'error');
+        return;
+      }
+
+      setStatus('正在登录...', '');
+
+      try {
+        const response = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password })
+        });
+        const payload = await response.json();
+
+        if (!response.ok || payload.code !== 'OK') {
+          throw new Error(payload.message || '登录失败');
+        }
+
+        saveSession(payload.data, username);
+        setStatus('登录成功，正在跳转...', 'success');
+        setTimeout(function () {
+          window.location.href = '../index.html';
+        }, 320);
+      } catch (error) {
+        setStatus(error.message || '登录失败，请重试。', 'error');
+      }
+    }
+
+    document.getElementById('fill-demo').addEventListener('click', function () {
+      usernameInput.value = 'admin';
+      passwordInput.value = '123456';
+      setStatus('已填入演示账号。', '');
+    });
+
+    form.addEventListener('submit', login);
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" rx="40" fill="#F6FBFF"/>
+  <rect x="48" y="48" width="1504" height="804" rx="32" fill="url(#bg)"/>
+  <rect x="86" y="112" width="620" height="676" rx="34" fill="#FFFFFF"/>
+  <rect x="120" y="148" width="552" height="72" rx="24" fill="#E0F2FE"/>
+  <rect x="120" y="252" width="250" height="220" rx="28" fill="#EFF6FF"/>
+  <rect x="392" y="252" width="280" height="220" rx="28" fill="#F0FDF4"/>
+  <rect x="120" y="496" width="552" height="248" rx="28" fill="#F8FAFC"/>
+  <rect x="154" y="530" width="180" height="24" rx="12" fill="#60A5FA"/>
+  <rect x="154" y="574" width="454" height="16" rx="8" fill="#CBD5E1"/>
+  <rect x="154" y="606" width="426" height="16" rx="8" fill="#CBD5E1"/>
+  <rect x="154" y="638" width="380" height="16" rx="8" fill="#CBD5E1"/>
+  <circle cx="520" cy="362" r="54" fill="#14B8A6"/>
+  <circle cx="240" cy="362" r="54" fill="#2563EB"/>
+  <text x="776" y="224" fill="#E3F0FF" font-family="Helvetica, Arial, sans-serif" font-size="26" letter-spacing="2">JAVA FULL-STACK HR PLATFORM</text>
+  <text x="776" y="324" fill="white" font-family="Helvetica, Arial, sans-serif" font-size="88" font-weight="700">TalentFlow HR</text>
+  <text x="776" y="390" fill="#DBEEFF" font-family="Helvetica, Arial, sans-serif" font-size="34">Organization data, HR workflows, reporting, and portfolio-ready backend system framing</text>
+  <rect x="776" y="458" width="248" height="58" rx="29" fill="#2563EB"/>
+  <text x="833" y="495" fill="white" font-family="Helvetica, Arial, sans-serif" font-size="26" font-weight="700">Spring Boot</text>
+  <rect x="1042" y="458" width="170" height="58" rx="29" fill="#0EA5E9"/>
+  <text x="1095" y="495" fill="white" font-family="Helvetica, Arial, sans-serif" font-size="26" font-weight="700">Vue</text>
+  <rect x="1230" y="458" width="190" height="58" rx="29" fill="#0F766E"/>
+  <text x="1278" y="495" fill="white" font-family="Helvetica, Arial, sans-serif" font-size="26" font-weight="700">HR Ops</text>
+  <rect x="776" y="578" width="706" height="172" rx="30" fill="rgba(8,47,73,0.20)"/>
+  <text x="820" y="638" fill="#F8FBFF" font-family="Helvetica, Arial, sans-serif" font-size="28" font-weight="700">Showcase assets planned around real flows</text>
+  <text x="820" y="686" fill="#DDF0FF" font-family="Helvetica, Arial, sans-serif" font-size="24">Admin login, employee management, process views, and reporting screenshots are the next visual layer.</text>
+  <text x="820" y="728" fill="#DDF0FF" font-family="Helvetica, Arial, sans-serif" font-size="24">This cover turns the repo into a stronger portfolio entry even before full runtime captures land.</text>
+  <defs>
+    <linearGradient id="bg" x1="48" y1="48" x2="1552" y2="852" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0C4A6E"/>
+      <stop offset="0.52" stop-color="#0EA5E9"/>
+      <stop offset="1" stop-color="#67E8F9"/>
+    </linearGradient>
+  </defs>
+</svg>

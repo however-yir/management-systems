@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>PartyHub 党建评星协同平台</title>
+    <meta name="description" content="PartyHub 党建评星定级协同平台，支持支部评星流程、统计分析与年度复盘。">
+    <link rel="stylesheet" href="css/partyhub-modern.css">
+</head>
+<body>
+<section id="hero" class="hero">
+    <header class="topbar">
+        <div class="brand">
+            <img src="newpic/logo-white.png" alt="PartyHub Logo">
+            <div>
+                <h1 class="brand-title">PartyHub 党建评星协同平台</h1>
+                <p class="brand-sub">支部评星定级 · 年度趋势分析 · 过程可追踪</p>
+            </div>
+        </div>
+        <div class="topbar-actions">
+            <span id="top-status" class="top-status">未登录</span>
+            <button id="logout-btn" class="ghost-btn" type="button">退出</button>
+        </div>
+    </header>
+
+    <div class="hero-inner">
+        <div class="hero-copy">
+            <p class="hero-kicker">2026 Workflow Console</p>
+            <h2 class="hero-title">让评星流程透明化，让党建数据可复盘</h2>
+            <p class="hero-desc">
+                从支部填报到学院审核，再到年度趋势复盘，一套界面完成全流程数据沉淀。你可以先使用演示账号快速体验，然后切换真实账号接入业务数据。
+            </p>
+            <div class="hero-cta">
+                <button type="button" class="primary-btn" onclick="document.getElementById('workspace').scrollIntoView({behavior:'smooth'})">查看实时看板</button>
+                <a class="secondary-btn" href="pages/page-login.html">独立登录页</a>
+            </div>
+        </div>
+
+        <div class="hero-login">
+            <div class="login-panel">
+                <h3 class="login-title">快速登录</h3>
+                <p class="login-sub">默认演示账号：admin / 123456</p>
+
+                <form id="login-form" class="login-grid">
+                    <div class="field">
+                        <label for="username">用户名</label>
+                        <input id="username" name="username" type="text" autocomplete="username" placeholder="请输入用户名">
+                    </div>
+                    <div class="field">
+                        <label for="password">密码</label>
+                        <input id="password" name="password" type="password" autocomplete="current-password" placeholder="请输入密码">
+                    </div>
+
+                    <div class="login-actions">
+                        <button class="primary-btn" type="submit">登录并刷新数据</button>
+                        <button id="quick-login" class="secondary-btn" type="button">填入演示账号</button>
+                    </div>
+
+                    <p id="login-status" class="login-status"></p>
+                </form>
+                <p class="login-tip">登录状态会保存在当前浏览器，本页刷新后仍会自动恢复。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<main id="workspace" class="workspace">
+    <div class="section-head reveal">
+        <div>
+            <h2 class="section-title">年度评星运营看板</h2>
+            <p id="dashboard-hint" class="section-note">加载中...</p>
+        </div>
+        <div class="section-tools">
+            <select id="year-select" class="field-select">
+                <option value="">全部年份</option>
+            </select>
+            <button id="refresh-btn" class="secondary-btn" type="button">刷新数据</button>
+        </div>
+    </div>
+
+    <section id="metrics-grid" class="metrics-grid"></section>
+
+    <section class="dual-grid">
+        <article class="panel reveal">
+            <h3 class="panel-title">星级分布</h3>
+            <div id="rating-bars"></div>
+        </article>
+        <article class="panel reveal">
+            <h3 class="panel-title">流程分布</h3>
+            <div id="process-bars"></div>
+        </article>
+    </section>
+
+    <section class="table-wrap reveal">
+        <table>
+            <thead>
+            <tr>
+                <th>排名</th>
+                <th>学院</th>
+                <th>记录数</th>
+                <th>均分</th>
+                <th>完成率</th>
+            </tr>
+            </thead>
+            <tbody id="ranking-body"></tbody>
+        </table>
+    </section>
+
+    <section class="trend-list" id="trend-list"></section>
+</main>
+
+<section class="final-cta reveal">
+    <div>
+        <h3 class="final-title">欢迎把这个页面作为支部评星演示入口</h3>
+        <p class="final-note">如果你要继续扩展，我可以下一步帮你加流程节点时间轴、学院对比图和导出报表。</p>
+    </div>
+    <a class="primary-btn" href="pages/star-list.html">进入评星列表页</a>
+</section>
+
+<script src="js/partyhub-modern.js"></script>
+</body>
+</html>

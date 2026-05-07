@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="group.teachingmanagerbk.mapper.CourseMapper">
+
+    <insert id="insertCourse" useGeneratedKeys = "true" keyProperty = "courseId">
+        insert into
+        course (
+                -- 课程名称必须存在，否则会报错
+                <if test="teacherId != null">teacher_id,</if>
+                <if test="credit != null">credit,</if>
+                <if test="hour != null">hour,</if>
+                <if test="time != null">time,</if>
+                <if test="placeId != null">place_id,</if>
+                <if test="description != null">description,</if>
+                <if test="courseStatusId">course_status_id,</if>
+                <if test="name != null">name</if>
+        )
+        values (
+                <if test="teacherId != null">#{teacherId},</if>
+                <if test="credit != null">#{credit},</if>
+                <if test="hour != null">#{hour},</if>
+                <if test="time != null">#{time},</if>
+                <if test="placeId != null">#{placeId},</if>
+                <if test="description != null">#{description},</if>
+                <if test="courseStatusId">#{courseStatusId},</if>
+                <if test="name != null">#{name}</if>
+        )
+    </insert>
+
+    <delete id="deleteCourseByIds">
+        delete from course where course_id in
+        <foreach collection="courseIds" item = "courseId"  separator="," open="(" close=")">
+            #{courseId}
+        </foreach>
+    </delete>
+    <select id="getCourseByCondition" resultType="group.teachingmanagerbk.vo.course.Course">
+        select c.*, t.name as teacherName, cs.name as courseStatusName, p.name as placeName from course c
+            left join teacher t on c.teacher_id = t.teacher_id
+            left join course_status cs on c.course_status_id = cs.course_status_id
+            left join place p on c.place_id = p.place_id
+            where c.name like concat('%',#{param.name},'%') and t.name like concat('%',#{param.teacherName},'%')
+            <if test="param.courseStatusId != null"> and c.course_status_id = #{param.courseStatusId}</if>
+            limit #{index}, #{size}
+    </select>
+    <select id="getCourseCountByCondition" resultType="java.lang.Integer">
+        select count(*) from course c
+            left join teacher t on c.teacher_id = t.teacher_id
+            left join course_status cs on c.course_status_id = cs.course_status_id
+            left join place p on c.place_id = p.place_id
+            where c.name like concat('%',#{name},'%') and t.name like concat('%',#{teacherName},'%')
+            <if test="courseStatusId != null"> and c.course_status_id = #{courseStatusId}</if>
+    </select>
+
+    <update id="modifyCourse">
+        update course
+        <set>
+            <if test="teacherId != null">teacher_id = #{teacherId},</if>
+            <if test="credit != null">credit = #{credit},</if>
+            <if test="hour != null">hour = #{hour},</if>
+            <if test="time != null">time = #{time},</if>
+            <if test="placeId != null">place_id = #{placeId},</if>
+            <if test="description != null">description = #{description},</if>
+            <if test="courseStatusId != null">course_status_id = #{courseStatusId},</if>
+            <if test="name != null">name = #{name}</if>
+        </set>
+        <where>
+            course_id = #{courseId}
+        </where>
+    </update>
+
+</mapper>

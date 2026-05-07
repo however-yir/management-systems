@@ -1,0 +1,25 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: partyhub-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-123456}
+      MYSQL_DATABASE: djxt
+    ports:
+      - "3306:3306"
+    volumes:
+      - partyhub_mysql_data:/var/lib/mysql
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+
+  redis:
+    image: redis:7.2-alpine
+    container_name: partyhub-redis
+    ports:
+      - "6379:6379"
+    command: ["redis-server", "--save", "60", "1", "--appendonly", "yes"]
+    volumes:
+      - partyhub_redis_data:/data
+
+volumes:
+  partyhub_mysql_data:
+  partyhub_redis_data:
