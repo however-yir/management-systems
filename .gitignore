@@ -1,0 +1,15 @@
+.DS_Store
+*.pyc
+__pycache__/
+*.egg-info/
+dist/
+build/
+.env
+*.sqlite3
+db.sqlite3
+media/
+node_modules/
+target/
+.idea/
+.vscode/
+aurora-mall/src/main/resources/upload.zip

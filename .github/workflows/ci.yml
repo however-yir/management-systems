@@ -1,0 +1,68 @@
+name: CI
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  # ===== Structure Verification =====
+  verify-structure:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify all subdirectories
+        run: |
+          set -e
+          # Spring Boot projects
+          for dir in talentflow-hr DormLink EduFlow partyhub CodeTrainer StudentCore aurora-mall cloud-native-mall; do
+            test -d "spring-boot/$dir" || { echo "MISSING: spring-boot/$dir/"; exit 1; }
+            test -f "spring-boot/$dir/README.md" || { echo "MISSING: spring-boot/$dir/README.md"; exit 1; }
+            echo "OK: spring-boot/$dir/"
+          done
+          # Django projects
+          for dir in StaffBase ai_chatbot; do
+            test -d "django/$dir" || { echo "MISSING: django/$dir/"; exit 1; }
+            test -f "django/$dir/README.md" || { echo "MISSING: django/$dir/README.md"; exit 1; }
+            echo "OK: django/$dir/"
+          done
+          test -f README.md || { echo "MISSING: README.md"; exit 1; }
+          echo "=== All 10 subdirectories verified ==="
+
+  # ===== Java / Spring Boot Build =====
+  build-spring-boot:
+    needs: verify-structure
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: 123456
+          MYSQL_DATABASE: testdb
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd "mysqladmin ping -h localhost"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+      - name: Build talentflow-hr
+        run: mvn -B compile -f spring-boot/talentflow-hr/talentflow-platform/pom.xml
+
+  # ===== Python / Django Check =====
+  check-django:
+    needs: verify-structure
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - name: Django check
+        run: |
+          pip install django && \
+          cd django/StaffBase/djangoProject && \
+          python -c "import django; print(f'Django {django.__version__} OK')"
