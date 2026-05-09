@@ -20,5 +20,5 @@ tensorboard==1.6.0
 tensorflow-gpu==1.6.0
 termcolor==1.1.0
 tornado==6.0.2
-tqdm==4.31.1
+tqdm==4.67.3
 Werkzeug==0.15.2
