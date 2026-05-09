@@ -5,50 +5,60 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+    open-pull-requests-limit: 5
 
   # Maven (Spring Boot projects)
   - package-ecosystem: "maven"
     directory: "/spring-boot/talentflow-hr"
     schedule:
       interval: "weekly"
+    open-pull-requests-limit: 3
 
   - package-ecosystem: "maven"
     directory: "/spring-boot/DormLink"
     schedule:
       interval: "weekly"
+    open-pull-requests-limit: 3
 
   - package-ecosystem: "maven"
     directory: "/spring-boot/EduFlow"
     schedule:
       interval: "weekly"
+    open-pull-requests-limit: 3
 
   - package-ecosystem: "maven"
     directory: "/spring-boot/partyhub"
     schedule:
       interval: "weekly"
+    open-pull-requests-limit: 3
 
   - package-ecosystem: "maven"
     directory: "/spring-boot/CodeTrainer"
     schedule:
       interval: "weekly"
+    open-pull-requests-limit: 3
 
   - package-ecosystem: "maven"
     directory: "/spring-boot/aurora-mall"
     schedule:
       interval: "weekly"
+    open-pull-requests-limit: 3
 
   - package-ecosystem: "maven"
     directory: "/spring-boot/cloud-native-mall"
     schedule:
       interval: "weekly"
+    open-pull-requests-limit: 3
 
   # pip (Django projects)
   - package-ecosystem: "pip"
     directory: "/django/StaffBase"
     schedule:
       interval: "weekly"
+    open-pull-requests-limit: 3
 
   - package-ecosystem: "pip"
     directory: "/django/ai_chatbot"
     schedule:
       interval: "weekly"
+    open-pull-requests-limit: 3
