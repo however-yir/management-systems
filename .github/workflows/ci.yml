@@ -73,9 +73,10 @@ jobs:
           distribution: 'temurin'
       - name: Compile StudentCore
         run: |
-          cd spring-boot/StudentCore
-          find . -name "*.java" > sources.txt
-          javac @sources.txt || { echo "StudentCore compile failed"; exit 1; }
+          cd spring-boot/StudentCore/完整源码/demo6
+          CP=$(find lib -name "*.jar" | tr '\n' ':')
+          find src -name "*.java" > sources.txt
+          javac -cp "$CP" @sources.txt || { echo "StudentCore compile failed"; exit 1; }
           echo "StudentCore compile OK"
 
   # ===== Django Check (matrix) =====
