@@ -1,12 +1,14 @@
 # Management Systems
 
-一个覆盖企业信息化全场景的管理系统集合，包含 Java Spring Boot 和 Python Django 两个技术栈的项目。
+一个覆盖企业信息化全场景的**管理系统合集**，包含 Java Spring Boot 和 Python Django 两个技术栈共 10 个子项目。每个子目录是独立可运行的完整管理系统。
+
+> 本仓库是企业管理系统的学习与参考集合，各子项目之间相互独立，不依赖任何统一平台或框架。
 
 ## 目录结构
 
 ```
 management-systems/
-├── spring-boot/            # Java 管理系统
+├── spring-boot/            # Java 管理系统（8 个项目）
 │   ├── talentflow-hr/      # HR 人力资源管理系统
 │   ├── DormLink/           # 宿舍管理系统
 │   ├── EduFlow/            # 教务管理系统
@@ -15,7 +17,7 @@ management-systems/
 │   ├── StudentCore/        # Java Swing 学生管理系统
 │   ├── aurora-mall/        # Spring Boot 电商（单体）
 │   └── cloud-native-mall/  # Spring Cloud 电商（微服务）
-└── django/                 # Python 管理系统
+└── django/                 # Python 管理系统（2 个项目）
     ├── StaffBase/          # 员工与工单管理系统
     └── ai_chatbot/         # Django 智能对话系统
 ```
@@ -122,6 +124,12 @@ cd spring-boot/talentflow-hr/   # 或其他子目录
 - **前端**: Vue 2/3, Element UI / Element Plus, Thymeleaf, Bootstrap, Layui
 - **数据库**: MySQL
 - **部署**: 支持 Docker / K8s / 传统部署
+
+## Contributing
+
+欢迎贡献！请阅读 [CONTRIBUTING.md](./CONTRIBUTING.md) 了解详情。
+
+本项目采用 [MIT License](./LICENSE)。
 
 ---
 

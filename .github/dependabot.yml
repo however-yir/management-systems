@@ -1,0 +1,54 @@
+version: 2
+updates:
+  # GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+
+  # Maven (Spring Boot projects)
+  - package-ecosystem: "maven"
+    directory: "/spring-boot/talentflow-hr"
+    schedule:
+      interval: "weekly"
+
+  - package-ecosystem: "maven"
+    directory: "/spring-boot/DormLink"
+    schedule:
+      interval: "weekly"
+
+  - package-ecosystem: "maven"
+    directory: "/spring-boot/EduFlow"
+    schedule:
+      interval: "weekly"
+
+  - package-ecosystem: "maven"
+    directory: "/spring-boot/partyhub"
+    schedule:
+      interval: "weekly"
+
+  - package-ecosystem: "maven"
+    directory: "/spring-boot/CodeTrainer"
+    schedule:
+      interval: "weekly"
+
+  - package-ecosystem: "maven"
+    directory: "/spring-boot/aurora-mall"
+    schedule:
+      interval: "weekly"
+
+  - package-ecosystem: "maven"
+    directory: "/spring-boot/cloud-native-mall"
+    schedule:
+      interval: "weekly"
+
+  # pip (Django projects)
+  - package-ecosystem: "pip"
+    directory: "/django/StaffBase"
+    schedule:
+      interval: "weekly"
+
+  - package-ecosystem: "pip"
+    directory: "/django/ai_chatbot"
+    schedule:
+      interval: "weekly"
