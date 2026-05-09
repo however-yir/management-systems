@@ -15,7 +15,7 @@
     <description>TalentFlow HR web backend</description>
     <properties>
         <java.version>1.8</java.version>
-        <testcontainers.version>1.19.8</testcontainers.version>
+        <testcontainers.version>1.21.4</testcontainers.version>
     </properties>
     <dependencies>
         <dependency>
