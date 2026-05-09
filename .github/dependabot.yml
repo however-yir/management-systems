@@ -9,19 +9,19 @@ updates:
 
   # Maven (Spring Boot projects)
   - package-ecosystem: "maven"
-    directory: "/spring-boot/talentflow-hr"
+    directory: "/spring-boot/talentflow-hr/talentflow-platform"
     schedule:
       interval: "weekly"
     open-pull-requests-limit: 3
 
   - package-ecosystem: "maven"
-    directory: "/spring-boot/DormLink"
+    directory: "/spring-boot/DormLink/Dormitory_business"
     schedule:
       interval: "weekly"
     open-pull-requests-limit: 3
 
   - package-ecosystem: "maven"
-    directory: "/spring-boot/EduFlow"
+    directory: "/spring-boot/EduFlow/teaching-manager-bk"
     schedule:
       interval: "weekly"
     open-pull-requests-limit: 3
@@ -33,7 +33,7 @@ updates:
     open-pull-requests-limit: 3
 
   - package-ecosystem: "maven"
-    directory: "/spring-boot/CodeTrainer"
+    directory: "/spring-boot/CodeTrainer/springbootx1786"
     schedule:
       interval: "weekly"
     open-pull-requests-limit: 3
