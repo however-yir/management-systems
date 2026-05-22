@@ -25,6 +25,16 @@
 
 ![TalentFlow HR showcase cover](docs/showcase/portfolio-cover.svg)
 
+## 统一案例入口
+
+> 以下命令默认从 `management-systems` 仓库根目录执行。
+
+- 定位：主推 HR 人力资源管理案例，覆盖组织、人事、审批和报表场景。
+- 技术栈：Spring Boot + Vue + MyBatis + JWT + MySQL。
+- 启动命令：`cd spring-boot/talentflow-hr && cp .env.example .env && ./scripts/dev.sh backend-web`
+- 验证命令：`mvn -B compile -f spring-boot/talentflow-hr/talentflow-platform/pom.xml`
+- 截图/接口入口：截图见 `spring-boot/talentflow-hr/docs/showcase/login-page.png`；后端默认入口 `http://127.0.0.1:8081/`，前端使用 Vue 开发端口。
+
 ## 项目快照
 
 - 定位：Java 全栈人力资源管理平台。

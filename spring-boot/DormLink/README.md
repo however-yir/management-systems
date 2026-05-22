@@ -8,6 +8,16 @@
   面向校园宿舍业务的前后端分离系统（管理员 / 宿管 / 学生）
 </p>
 
+## 统一案例入口
+
+> 以下命令默认从 `management-systems` 仓库根目录执行。
+
+- 定位：宿舍管理 sample，覆盖入住、调宿、报修、访客登记和公告管理。
+- 技术栈：Spring Boot + Vue3 + Element Plus + MyBatis-Plus + MySQL。
+- 启动命令：`cd spring-boot/DormLink && cp .env.example .env && ./scripts/dev.sh backend`
+- 验证命令：`mvn -B compile -f spring-boot/DormLink/Dormitory_business/pom.xml`
+- 截图/接口入口：接口文档入口 `http://localhost:9090/swagger-ui.html`；前端工程在 `spring-boot/DormLink/vue`。
+
 ## 目录
 
 - [1. 项目概述](#1-项目概述)

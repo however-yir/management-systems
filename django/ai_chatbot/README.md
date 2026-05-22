@@ -6,6 +6,16 @@
 
 > 基于 **Python + Django + HTML + MySQL** 的聊天机器人系统，包含用户管理、问答记录管理与后台运维能力；并提供可选的深度学习对话子模块（`index/detection`）。
 
+## 统一案例入口
+
+> 以下命令默认从 `management-systems` 仓库根目录执行。
+
+- 定位：archived learning project，适合作为 Django 用户、问答记录和后台运维样例。
+- 技术栈：Django 3.2.x + MySQL + Layui + TensorFlow 1.x（可选）。
+- 启动命令：`cd django/ai_chatbot && python manage.py runserver 8000`
+- 验证命令：`cd django/ai_chatbot && pip install -r requirements/core.txt && python manage.py check`
+- 截图/接口入口：截图见 `django/ai_chatbot/docs/docx-images/`；Web 入口 `http://127.0.0.1:8000`。
+
 ## 1. 项目说明
 
 本项目对应“基于 Python 的 Django-HTML 深度学习聊天机器人设计与实现”思路，采用 Django 实现 Web 端业务流程，MySQL 持久化用户与问答数据，支持基础对话记录管理与后台管理。

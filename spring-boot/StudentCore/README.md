@@ -6,6 +6,24 @@
 
 > 基于 Java Swing + JDBC + MySQL 的学生信息管理桌面系统，支持管理员与学生双角色登录，覆盖学生/课程/成绩等核心教学数据管理。
 
+## 统一案例入口
+
+> 以下命令默认从 `management-systems` 仓库根目录执行。
+
+- 定位：archived learning project，适合作为 Java Swing 桌面端学生管理样例。
+- 技术栈：Java Swing + JDBC + MySQL。
+- 启动命令：`cd spring-boot/StudentCore/完整源码/demo6 && ./run.sh`
+- 验证命令：
+
+```bash
+cd spring-boot/StudentCore/完整源码/demo6
+CP=$(find lib -name "*.jar" | tr '\n' ':')
+find src -name "*.java" > sources.txt
+javac -cp "$CP" @sources.txt
+```
+
+- 截图/接口入口：桌面端入口为 `spring-boot/StudentCore/完整源码/demo6/src/com/system/view/Login.java` 的 `main` 方法，无 Web 接口。
+
 ## 1. 项目定位
 
 `StudentCore` 是一个典型的桌面端教务管理练手项目，强调“本地单机可运行、界面直观、CRUD 流程完整”。

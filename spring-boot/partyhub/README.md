@@ -6,6 +6,16 @@
 [![Java Version](https://img.shields.io/badge/Java-17-blue)](https://adoptium.net/)
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.2-green)](https://spring.io/projects/spring-boot)
 
+## 统一案例入口
+
+> 以下命令默认从 `management-systems` 仓库根目录执行。
+
+- 定位：党建管理 sample，覆盖支部、党员、评星定级、通知反馈和统计分析。
+- 技术栈：Spring Boot + Spring Security + JWT + MyBatis-Plus + MySQL + Redis。
+- 启动命令：`cd spring-boot/partyhub && cp .env.example .env && mvn spring-boot:run`
+- 验证命令：`mvn -B compile -f spring-boot/partyhub/pom.xml`
+- 截图/接口入口：默认服务入口 `http://localhost:8080`；认证接口 `POST /api/auth/login`；冒烟入口 `bash scripts/evaluation/api_smoke_check.sh http://localhost:8080`。
+
 ## 🎯 项目定位
 
 `partyhub` 聚焦党支部评星定级管理场景，解决线下填报效率低、评分口径不统一、年度统计分析滞后的问题。  

@@ -6,6 +6,16 @@
 
 > 基于 Spring Boot + MyBatis + MySQL 的编程训练系统，覆盖题库资源、试卷试题、考试记录、成绩统计、论坛互动等功能，并内置前后端资源（管理端 Vue 工程与前台静态页面）。
 
+## 统一案例入口
+
+> 以下命令默认从 `management-systems` 仓库根目录执行。
+
+- 定位：archived learning project，适合作为题库、考试和论坛模块的传统管理系统样例。
+- 技术栈：Spring Boot 2.2 + MyBatis-Plus + Shiro + MySQL + Vue2。
+- 启动命令：`cd spring-boot/CodeTrainer/springbootx1786 && mvn spring-boot:run`
+- 验证命令：`mvn -B compile -f spring-boot/CodeTrainer/springbootx1786/pom.xml`
+- 截图/接口入口：默认入口 `http://localhost:8080/springbootx1786`；管理端资源位于 `spring-boot/CodeTrainer/springbootx1786/src/main/resources/admin/admin`。
+
 ## 1. 项目定位
 
 `CodeTrainer` 适用于课程训练、考试练习与题库管理场景，当前仓库包含：

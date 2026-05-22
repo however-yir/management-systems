@@ -21,6 +21,16 @@ Aurora Mall 是一个基于 Spring Boot 的商城系统二次开发项目，目�
 
 ![Aurora Mall showcase cover](docs/showcase/portfolio-cover.svg)
 
+## 统一案例入口
+
+> 以下命令默认从 `management-systems` 仓库根目录执行。
+
+- 定位：主推单体电商管理系统案例，覆盖商城前台、后台管理和工程化治理。
+- 技术栈：Spring Boot + Thymeleaf + MyBatis + MySQL。
+- 启动命令：`cd spring-boot/aurora-mall && cp .env.example .env && ./scripts/dev.sh all-local`
+- 验证命令：`mvn -B compile -f spring-boot/aurora-mall/pom.xml`
+- 截图/接口入口：封面见 `spring-boot/aurora-mall/docs/showcase/portfolio-cover.svg`；前台入口 `http://localhost:28089`，后台入口 `http://localhost:28089/admin/login`，接口说明见 `spring-boot/aurora-mall/docs/API.md`。
+
 ## 项目快照
 
 - 定位：Java 电商系统二开与工程化整理仓库。

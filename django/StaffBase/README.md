@@ -6,6 +6,16 @@
 
 > 基于 Django + MySQL 的企业人员管理系统，覆盖组织部门、员工信息、任务与订单、可视化统计，以及 IoT 设备与数据展示模块。
 
+## 统一案例入口
+
+> 以下命令默认从 `management-systems` 仓库根目录执行。
+
+- 定位：Django 员工与工单管理 sample，覆盖组织、员工、任务、订单、图表和 IoT 看板。
+- 技术栈：Django 3.1.x + MySQL + Bootstrap + Pillow。
+- 启动命令：`cd django/StaffBase/djangoProject && python manage.py runserver 0.0.0.0:8000`
+- 验证命令：`cd django/StaffBase && pip install -r djangoProject/requirements.txt && cd djangoProject && python manage.py check`
+- 截图/接口入口：登录入口 `http://127.0.0.1:8000/login/`；核心路由包括 `/depart/*`、`/user/*`、`/task/*`、`/order/*`、`/chart/*`。
+
 ## 1. 项目定位
 
 `StaffBase` 是一个偏“管理后台 + 数据看板”的综合示例系统，核心是企业人员信息管理，并扩展了订单、任务、图表与设备管理能力。

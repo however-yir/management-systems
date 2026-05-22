@@ -6,6 +6,16 @@
 
 > 面向教务场景的课程与成员管理系统，包含前后端完整工程：后端负责鉴权与业务流程，前端提供管理员/教师/学生三类角色工作台。
 
+## 统一案例入口
+
+> 以下命令默认从 `management-systems` 仓库根目录执行。
+
+- 定位：教务管理 sample，覆盖课程、选课、申请审批、成绩录入和多角色工作台。
+- 技术栈：Spring Boot + Vue3 + MyBatis + JWT + MySQL。
+- 启动命令：`cd spring-boot/EduFlow && cp .env.example .env && ./scripts/dev.sh all`
+- 验证命令：`mvn -B compile -f spring-boot/EduFlow/teaching-manager-bk/pom.xml`
+- 截图/接口入口：后端接口文档 `http://127.0.0.1:8081/swagger-ui.html`；前端默认入口 `http://127.0.0.1:5174`。
+
 ## 1. 项目定位
 
 `EduFlow` 用于教学管理业务的完整支撑：

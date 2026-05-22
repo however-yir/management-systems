@@ -10,6 +10,16 @@
 ![Architecture](https://img.shields.io/badge/Architecture-Microservices-2563eb)
 ![Status](https://img.shields.io/badge/Status-Bootstrap--Ready-16a34a)
 
+## 统一案例入口
+
+> 以下命令默认从 `management-systems` 仓库根目录执行。
+
+- 定位：主推云原生电商案例，展示网关、用户、商品、订单、支付等微服务拆分。
+- 技术栈：Spring Cloud + Spring Gateway + JWT + Flyway + MySQL + Docker/K8s。
+- 启动命令：`cd spring-boot/cloud-native-mall && cp .env.example .env && ./scripts/build-all.sh`
+- 验证命令：`mvn -B compile -f spring-boot/cloud-native-mall/pom.xml`
+- 截图/接口入口：网关默认入口 `http://localhost:8080`；健康检查 `http://localhost:8080/actuator/health`；OpenAPI 入口 `http://localhost:8080/swagger-ui.html`。
+
 ## 项目快照
 
 - 项目名建议：`cloud-native-mall`（当前采用）
