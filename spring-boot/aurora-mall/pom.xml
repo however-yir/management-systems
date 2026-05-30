@@ -23,7 +23,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <mybatis.start.version>2.2.2</mybatis.start.version>
-        <hutool-captcha.version>5.8.44</hutool-captcha.version>
+        <hutool-captcha.version>5.8.46</hutool-captcha.version>
         <testcontainers.version>1.21.4</testcontainers.version>
     </properties>
 
