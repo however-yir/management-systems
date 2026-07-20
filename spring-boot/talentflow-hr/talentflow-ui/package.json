@@ -10,7 +10,7 @@
     "test:unit:watch": "jest --watch"
   },
   "dependencies": {
-    "axios": "^0.31.1",
+    "axios": "^0.33.0",
     "core-js": "^3.38.1",
     "element-ui": "^2.15.14",
     "font-awesome": "^4.7.0",
