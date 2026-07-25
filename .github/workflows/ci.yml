@@ -91,7 +91,7 @@ jobs:
           - { name: ai_chatbot, dir: django/ai_chatbot }
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v6
+      - uses: actions/setup-python@v7
         with:
           python-version: '3.10'
       - name: Django check ${{ matrix.project.name }}
